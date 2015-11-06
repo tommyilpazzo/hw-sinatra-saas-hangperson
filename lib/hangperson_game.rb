@@ -28,9 +28,13 @@ class HangpersonGame
   def guess(letter)
     raise ArgumentError if letter.nil? or letter.empty? or !letter.match(/^[a-zA-Z]+$/)
     return false if (@guesses+@wrong_guesses).include? letter.downcase
-    if @word.downcase.include? letter.downcase then @guesses << letter.downcase 
-      else @wrong_guesses << letter.downcase end
-    return true
+    if @word.downcase.include? letter.downcase then 
+      @guesses << letter.downcase 
+      return true
+    else 
+      @wrong_guesses << letter.downcase 
+      return :invalid
+    end
   end
   
   def word_with_guesses
