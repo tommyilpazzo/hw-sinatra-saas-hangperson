@@ -42,7 +42,7 @@ class HangpersonApp < Sinatra::Base
     ### YOUR CODE HERE ###
     begin
       flash[:message] = "You have already used that letter." unless @game.guess(letter) 
-    rescue ArgumentError => argumentError
+    rescue ArgumentError
       flash[:message] = "Invalid guess."
     end
     redirect '/show'
@@ -63,11 +63,13 @@ class HangpersonApp < Sinatra::Base
   
   get '/win' do
     ### YOUR CODE HERE ###
+    redirect '/show' if @game.check_win_or_lose == :play
     erb :win # You may change/remove this line
   end
   
   get '/lose' do
     ### YOUR CODE HERE ###
+    redirect '/show' if @game.check_win_or_lose == :play
     erb :lose # You may change/remove this line
   end
   
