@@ -39,7 +39,7 @@ class HangpersonGame
   
   def check_win_or_lose
     return :lose unless @wrong_guesses.length < 7
-    return :win if @word.downcase.chars.sort == @guesses.chars.sort
+    return :win if @word.downcase.chars.uniq.sort == @guesses.chars.sort
     return :play
   end
   
